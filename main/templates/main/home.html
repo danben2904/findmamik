@@ -1,0 +1,32 @@
+{%  extends 'main/main.html' %}
+{% block content %}
+
+<style>
+    .center-text{
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+</style>
+
+{% if request.user.seeker.is_free %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="center-text">Don't have a partner?</p>
+                <form action="{% url 'main:find' %}">
+                    <input type="submit" class="btn btn-outline-success" value="Let's find one!"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="center-text">News soon...</p>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock content %}

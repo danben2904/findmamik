@@ -1,0 +1,20 @@
+{% load static %}
+
+<style>
+    .logo-text{
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<nav class="navbar navbar-expand-rg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'main:home' %}">
+        <img src="images/logo_olya.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <h class="logo-text">Find Mamik</h>
+    </a>
+    {% if request.user.username != "" %}
+        <div class="navbar-text ml-auto">
+            Hello, <a href="{% url 'main:user' request.user.username %}">{{request.user.username}}</a>
+        </div>
+    {% endif %}
+</nav>

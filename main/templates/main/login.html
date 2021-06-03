@@ -1,0 +1,58 @@
+{%  extends 'main/main.html' %}
+{% block content %}
+
+<style>
+    .img-text{
+        font-size: 15px;
+    }
+    .fit-image{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .has-margin{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .center-text{
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container has-margin">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h class="center-text">Log in</h>
+        </div>
+    </div>
+</div>
+
+<div class="container has-margin">
+    <div class="row">
+        <form method="POST" action="" class="col-12 text-center">
+            {% csrf_token %}
+
+            <input type="text" name="username" placeholder="username">
+            <p></p>
+            <input type="password" name="password" placeholder="password">
+            <p></p>
+            <input type="submit" name="Log In" class="btn btn-outline-success" value="log in">
+
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        </form>
+    </div>
+</div>
+
+<div class="container has-margin">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h class="center-text">Don't have an account?</h>
+            <a href="{% url 'main:register' %}" class="text-success center-text">Register</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
