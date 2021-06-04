@@ -14,26 +14,41 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    .center-text{
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
 </style>
 
-<div class="container has-margin">
-    <div class="row">
-        <form action="" method="post" class="col-12 text-center">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Submit" class="btn btn-outline-success">
-        </form>
+{% if request.user.seeker.is_free %}
+    <div class="container has-margin">
+        <div class="row">
+            <form action="" method="post" class="col-12 text-center">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit" class="btn btn-outline-success">
+            </form>
+        </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        {% for user in data %}
-            <a href="{% url 'main:user' user.username %}" class="col-sm-12 col-md-4 col-lg-2 has-margin">
-                <img src="{{user.seeker.profile_pic.url}}" class="fit-image">
-            </a>
-        {% endfor %}
+    <div class="container">
+        <div class="row">
+            {% for user in data %}
+                <a href="{% url 'main:user' user.username %}" class="col-sm-12 col-md-4 col-lg-2 has-margin">
+                    <img src="{{user.seeker.profile_pic.url}}" class="fit-image">
+                </a>
+            {% endfor %}
+        </div>
     </div>
-</div>
+{% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="center-text">Set status free first!</p>
+            </div>
+        </div>
+    </div>
+{% endif %}
 
 {% endblock content %}
